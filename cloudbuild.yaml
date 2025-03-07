@@ -1,0 +1,12 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-f'
+      - 'openhand/containers/app/Dockerfile'  # Path to your Dockerfile
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/openhand'  # Image tag
+      - '.'  # Use the current directory as the build context, ensuring all files are accessible
+
+images:
+  - 'gcr.io/$PROJECT_ID/openhand'  # Define the image name that will be built
