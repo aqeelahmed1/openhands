@@ -138,4 +138,4 @@ WORKDIR /app
 
 # Set entrypoint and command
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["uvicorn", "openhands.server.listen:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "openhands.server.listen:app", "--host", "0.0.0.0", "--port", "3000"]
