@@ -89,10 +89,31 @@ COPY --chown=openhands:app --from=backend-builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 RUN playwright install --with-deps chromium
 
 # Copy necessary application files
-COPY --chown=openhands:app --chmod=770 ./microagents ./microagents
-COPY --chown=openhands:app --chmod=770 ./openhands ./openhands
-COPY --chown=openhands:app --chmod=777 ./openhands/runtime/plugins ./openhands/runtime/plugins
-COPY --chown=openhands:app --chmod=770 ./openhands/agenthub ./openhands/agenthub
+# COPY --chown=openhands:app --chmod=770 ./microagents ./microagents
+# COPY --chown=openhands:app --chmod=770 ./openhands ./openhands
+# COPY --chown=openhands:app --chmod=777 ./openhands/runtime/plugins ./openhands/runtime/plugins
+# COPY --chown=openhands:app --chmod=770 ./openhands/agenthub ./openhands/agenthub
+# COPY --chown=openhands:app ./pyproject.toml ./pyproject.toml
+# COPY --chown=openhands:app ./poetry.lock ./poetry.lock
+# COPY --chown=openhands:app ./README.md ./README.md
+# COPY --chown=openhands:app ./MANIFEST.in ./MANIFEST.in
+# COPY --chown=openhands:app ./LICENSE ./LICENSE
+#
+# # This step creates necessary directories with proper permissions
+# RUN python openhands/core/download.py
+#
+# # Change group ownership of all files
+# RUN find /app \! -group app -exec chgrp app {} +
+#
+# # Copy frontend build files
+# COPY --chown=openhands:app --chmod=770 --from=frontend-builder /app/build ./frontend/build
+#
+# # Copy entrypoint script
+# COPY --chown=openhands:app --chmod=770 ./containers/app/entrypoint.sh /app/entrypoint.sh
+COPY --chown=openhands:app ./microagents ./microagents
+COPY --chown=openhands:app ./openhands ./openhands
+COPY --chown=openhands:app ./openhands/runtime/plugins ./openhands/runtime/plugins
+COPY --chown=openhands:app ./openhands/agenthub ./openhands/agenthub
 COPY --chown=openhands:app ./pyproject.toml ./pyproject.toml
 COPY --chown=openhands:app ./poetry.lock ./poetry.lock
 COPY --chown=openhands:app ./README.md ./README.md
@@ -106,10 +127,10 @@ RUN python openhands/core/download.py
 RUN find /app \! -group app -exec chgrp app {} +
 
 # Copy frontend build files
-COPY --chown=openhands:app --chmod=770 --from=frontend-builder /app/build ./frontend/build
+COPY --chown=openhands:app --from=frontend-builder /app/build ./frontend/build
 
 # Copy entrypoint script
-COPY --chown=openhands:app --chmod=770 ./containers/app/entrypoint.sh /app/entrypoint.sh
+COPY --chown=openhands:app ./containers/app/entrypoint.sh /app/entrypoint.sh
 
 USER root
 
