@@ -135,6 +135,7 @@ COPY --chown=openhands:app ./containers/app/entrypoint.sh /app/entrypoint.sh
 USER root
 
 WORKDIR /app
+RUN chmod +x /app/entrypoint.sh
 
 # Set entrypoint and command
 ENTRYPOINT ["/app/entrypoint.sh"]
