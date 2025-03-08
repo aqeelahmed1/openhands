@@ -82,7 +82,8 @@ ENV VIRTUAL_ENV=/app/.venv \
     PYTHONPATH='/app'
 
 # Copy Python virtual environment from the backend-builder stage
-COPY --chown=openhands:app --chmod=770 --from=backend-builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
+# COPY --chown=openhands:app --chmod=770 --from=backend-builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
+COPY --chown=openhands:app --from=backend-builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 # Install Playwright and dependencies
 RUN playwright install --with-deps chromium
